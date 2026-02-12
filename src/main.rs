@@ -2,6 +2,30 @@ use std::ptr::null_mut;
 use windows::core::PCWSTR;
 use windows::Win32::UI::WindowsAndMessaging::*;
 
+struct MyData {
+    a: i32,
+    b: f64,
+    c: String,
+}
+
+impl MyData {
+    fn none_new() -> Self {
+        Self {
+            a: 1,
+            b: 2.0,
+            c: "3".to_string(),
+        }
+    }
+
+    fn new(a: i32, b: f64, c: String) -> Self {
+        Self { a, b, c }
+    }
+
+    fn print(&self) {
+        println!("a = {}, b = {}, c = {}", self.a, self.b, self.c);
+    }
+}
+
 fn main() {
     let a = 26; //型推論変数
     // a = 25; （※これはできない）
@@ -28,6 +52,9 @@ fn main() {
     list.push("bbb");
     println!("{:?}", list);
     println!("{:?}", list[0]);
+
+    let my_data = MyData::new(1, 1.0, "1".to_string());
+    my_data.print();
 
     unsafe {
         MessageBoxW(
