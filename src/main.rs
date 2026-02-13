@@ -56,6 +56,22 @@ fn main() {
     let my_data = MyData::new(1, 1.0, "1".to_string());
     my_data.print();
 
+    //所有権
+    let s1 = String::from("s1");
+    let s2 = s1; //s1を代入することで、s1は使えなくなる
+    println!("{}", s2);
+    // println!("{}", s1); //これはNG
+
+    let s3 = String::from("s3");
+    let s4 = s3.clone(); //clone関数で、s3もs4も使えるように
+    println!("{}", s3); //可能
+    println!("{}", s4); //可能
+
+    let s5 = 10;
+    let s6 = s5; //データ型（整数、bool、char等は代入でも可能）
+    println!("{}", s5);
+    println!("{}", s6);
+
     unsafe {
         MessageBoxW(
             None,
